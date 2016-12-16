@@ -25,6 +25,11 @@ if [ ! -f "$ZOO_CONF_DIR/zoo.cfg" ]; then
     done
 fi
 
+# Generate the log4j only if it doesn't exist
+if [ ! -f "$ZOO_CONF_DIR/log4j.properties" ]; then
+    cp -av /opt/zookeeper/log4j.properties /opt/zookeeper/conf/
+fi
+
 # Write myid only if it doesn't exist
 if [ ! -f "$ZOO_DATA_DIR/myid" ]; then
     echo "${ZOO_MY_ID:-1}" > "$ZOO_DATA_DIR/myid"

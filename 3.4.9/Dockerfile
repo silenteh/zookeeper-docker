@@ -49,10 +49,11 @@ ENV PATH=$PATH:/$DISTRO_NAME/bin \
     ZOOCFGDIR=$ZOO_CONF_DIR
 
 COPY docker-entrypoint.sh /opt/zookeeper/
-COPY log4j.properties /opt/zookeeper/conf/
+COPY log4j.properties /opt/zookeeper/
 
 RUN set -x \
 && chown -R zookeeper:zookeeper /opt/zookeeper \
+&& chown -R zookeeper:zookeeper /opt/zookeeper/log4j.properties \
 && chown -R zookeeper:zookeeper /$DISTRO_NAME \
 && chmod +x /opt/zookeeper/docker-entrypoint.sh
 
