@@ -39,6 +39,7 @@ RUN set -x \
     && apk del .build-deps
 
 WORKDIR $DISTRO_NAME
+
 VOLUME ["$ZOO_DATA_DIR", "$ZOO_DATA_LOG_DIR"]
 
 EXPOSE $ZOO_PORT 2888 3888
@@ -46,9 +47,12 @@ EXPOSE $ZOO_PORT 2888 3888
 ENV PATH=$PATH:/$DISTRO_NAME/bin \
     ZOOCFGDIR=$ZOO_CONF_DIR
 
-USER zookeeper
-
 COPY docker-entrypoint.sh /opt/zookeeper/
+
+RUN set -x \
+chmod +x /opt/zookeeper/docker-entrypoint.sh
+
+USER zookeeper
 
 ENTRYPOINT ["/opt/zookeeper/docker-entrypoint.sh"]
 
