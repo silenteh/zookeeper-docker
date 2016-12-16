@@ -56,7 +56,7 @@ RUN set -x \
 && chown -R zookeeper:zookeeper /opt/zookeeper/log4j.properties \
 && chown -R zookeeper:zookeeper /$DISTRO_NAME \
 && chmod +x /opt/zookeeper/docker-entrypoint.sh \
-&& chmod -R 777 /opt/zookeeper/data
+&& chmod -R 777 /opt/zookeeper
 
 USER zookeeper
 
