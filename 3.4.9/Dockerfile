@@ -46,6 +46,10 @@ EXPOSE $ZOO_PORT 2888 3888
 ENV PATH=$PATH:/$DISTRO_NAME/bin \
     ZOOCFGDIR=$ZOO_CONF_DIR
 
-COPY docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+USER zookeeper
+
+COPY docker-entrypoint.sh /opt/zookeeper/
+
+ENTRYPOINT ["/opt/zookeeper/docker-entrypoint.sh"]
+
 CMD ["zkServer.sh", "start-foreground"]
