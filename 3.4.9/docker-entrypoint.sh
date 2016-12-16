@@ -27,7 +27,7 @@ fi
 
 # Generate the log4j only if it doesn't exist
 if [ ! -f "$ZOO_CONF_DIR/log4j.properties" ]; then
-    cp -av /opt/zookeeper/log4j.properties /opt/zookeeper/conf/
+    cp /opt/zookeeper/log4j.properties /opt/zookeeper/conf/
 fi
 
 # Write myid only if it doesn't exist
