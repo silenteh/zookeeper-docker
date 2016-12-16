@@ -22,6 +22,7 @@ RUN set -x \
     && chown "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
 
 ARG GPG_KEY=C823E3E5B12AF29C67F81976F5CECB3CB5E9BD2D
+
 ARG DISTRO_NAME=zookeeper-3.4.9
 
 # Download Apache Zookeeper, verify its PGP signature, untar and clean up
@@ -50,7 +51,9 @@ ENV PATH=$PATH:/$DISTRO_NAME/bin \
 COPY docker-entrypoint.sh /opt/zookeeper/
 
 RUN set -x \
-chmod +x /opt/zookeeper/docker-entrypoint.sh
+&& chown -R zookeeper:zookeeper /opt/zookeeper \
+&& chown -R zookeeper:zookeeper /$DISTRO_NAME \
+&& chmod +x /opt/zookeeper/docker-entrypoint.sh
 
 USER zookeeper
 
