@@ -19,9 +19,9 @@ ENV ZOO_USER=zookeeper \
 USER root    
 
 # Add group
-RUN set -x \
-    && addgroup -h \
-    && addgroup -g "$ZOO_UID" "$ZOO_USER" 
+RUN set -x \    
+    && addgroup -g "$ZOO_UID" "$ZOO_USER" \
+    && cat /etc/group
 
 # Add a user and make dirs
 RUN set -x \    
