@@ -1,5 +1,5 @@
 FROM openjdk:8-jre-alpine
-MAINTAINER Elisey Zanko <elisey.zanko@gmail.com>
+MAINTAINER Elisey Zanko <silenteh@gmail.com>
 
 # Install required packages
 RUN apk add --no-cache \
@@ -20,6 +20,7 @@ USER root
 
 # Add group
 RUN set -x \
+    && addgroup -h
     && addgroup -g "$ZOO_UID" "$ZOO_USER" 
 
 # Add a user and make dirs
