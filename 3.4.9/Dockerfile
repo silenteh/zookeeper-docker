@@ -20,7 +20,7 @@ USER root
 
 # Add group
 RUN set -x \
-    && addgroup -h
+    && addgroup -h \
     && addgroup -g "$ZOO_UID" "$ZOO_USER" 
 
 # Add a user and make dirs
