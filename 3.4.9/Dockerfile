@@ -18,9 +18,12 @@ ENV ZOO_USER=zookeeper \
 
 USER root    
 
-# Add a user and make dirs
+# Add group
 RUN set -x \
-    && addgroup -g "$ZOO_UID" "$ZOO_USER" \
+    && addgroup -g "$ZOO_UID" "$ZOO_USER" 
+
+# Add a user and make dirs
+RUN set -x \    
     && adduser -u "$ZOO_UID" -G "$ZOO_UID" -D "$ZOO_USER" \
     && mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chgrp -R 0 "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
