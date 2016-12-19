@@ -20,7 +20,8 @@ USER root
 
 # Add a user and make dirs
 RUN set -x \
-    && adduser -D "$ZOO_USER" --uid $ZOO_UID --gud $ZOO_UID\
+    && addgroup -g "$ZOO_USER" \
+    && adduser -D "$ZOO_USER" -u $ZOO_UID -G $ZOO_UID\
     && mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chgrp -R 0 "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chmod -R g+rw "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
