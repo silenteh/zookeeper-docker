@@ -1,5 +1,5 @@
 FROM openjdk:8-jre-alpine
-MAINTAINER Elisey Zanko <silenteh@gmail.com>
+MAINTAINER Silenteh <silenteh@gmail.com>
 
 # Install required packages
 RUN apk add --no-cache \
@@ -25,7 +25,7 @@ RUN set -x \
 
 # Add a user and make dirs
 RUN set -x \    
-    && adduser -u "$ZOO_UID" -G "$ZOO_UID" -D "$ZOO_USER" \
+    && adduser -u "$ZOO_UID" -G "$ZOO_USER" -D "$ZOO_USER" \
     && mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chgrp -R 0 "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chmod -R g+rw "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
