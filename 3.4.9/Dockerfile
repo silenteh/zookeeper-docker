@@ -20,15 +20,14 @@ USER root
 
 # Add group
 RUN set -x \    
-    && addgroup -g "$ZOO_UID" "$ZOO_USER" \
-    && cat /etc/group
+    && addgroup -g "$ZOO_UID" "$ZOO_USER"    
 
 # Add a user and make dirs
 RUN set -x \    
     && adduser -u "$ZOO_UID" -G "$ZOO_USER" -D "$ZOO_USER" \
     && mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
-    && chgrp -R 0 "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
-    && chmod -R g+rw "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
+    && chgrp -R 0 "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
+    && chmod -R g+rw "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
 
 USER $ZOO_UID    
 
