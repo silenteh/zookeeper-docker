@@ -29,8 +29,6 @@ RUN set -x \
     && chgrp -R 0 "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chmod -R g+rw "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
 
-USER $ZOO_UID    
-
 ARG GPG_KEY=C823E3E5B12AF29C67F81976F5CECB3CB5E9BD2D
 
 ARG DISTRO_NAME=zookeeper-3.4.9
@@ -60,6 +58,8 @@ ENV PATH=$PATH:/$DISTRO_NAME/bin \
 
 COPY docker-entrypoint.sh /opt/zookeeper/
 COPY log4j.properties /opt/zookeeper/
+
+USER $ZOO_UID
 
 # RUN set -x \
 # && chown -R zookeeper:zookeeper /opt/zookeeper \
